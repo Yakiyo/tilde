@@ -5,6 +5,7 @@ go 1.20
 require (
 	github.com/charmbracelet/log v0.2.3
 	github.com/ivanpirog/coloredcobra v1.0.1
+	github.com/mitchellh/go-homedir v1.1.0
 	github.com/spf13/cobra v1.7.0
 )
 
