@@ -1,19 +1,23 @@
+set positional-arguments
+
 alias b := build
 alias u := update
-alias r := run
 
 default:
-    @just --list
-
-update:
-    go mod tidy
-    go get
-
-build:
-    go build -o tilde main.go
+  @just --list
 
 @run *arg:
     go run main.go $@
 
+test:
+	go test ./...
+
+build:
+	go build -o tldr main.go
+
 fmt:
 	go fmt ./...
+
+update:
+	go get
+	go mod tidy
