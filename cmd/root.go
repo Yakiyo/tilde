@@ -20,6 +20,11 @@ var rootCmd = &cobra.Command{
 	
 View community driven and simplified man pages in your terminal`,
 	Version: "0.1.0",
+	PreRunE: func(cmd *cobra.Command, args []string) error {
+		// logLvl := utils.Must(cmd.Flags().GetString("log-level"))
+		
+		return nil
+	},
 	Run: func(cmd *cobra.Command, args []string) {
 		if len(os.Args[1:]) < 1 {
 			cmd.Help()
