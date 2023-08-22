@@ -1,7 +1,8 @@
+// Fast tldr console client
 package main
 
-import "fmt"
+import "github.com/Yakiyo/tilde/cmd"
 
 func main() {
-	fmt.Println("Hello World")
+	cmd.Execute()
 }
