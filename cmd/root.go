@@ -18,7 +18,12 @@ var rootCmd = &cobra.Command{
 	
 View community driven and simplified man pages in your terminal`,
 	Version: "0.1.0",
-	Run:     func(cmd *cobra.Command, args []string) {},
+	Run: func(cmd *cobra.Command, args []string) {
+		if len(os.Args[1:]) < 1 {
+			cmd.Help()
+			os.Exit(1)
+		}
+	},
 }
 
 // Execute adds all child commands to the root command and sets flags appropriately.
@@ -34,11 +39,6 @@ func Execute() {
 		FlagsDataType:   cc.Italic + cc.HiBlue,
 		NoExtraNewlines: true,
 	})
-
-	if len(os.Args[1:]) < 1 {
-		rootCmd.Help()
-		os.Exit(1)
-	}
 
 	if err := rootCmd.Execute(); err != nil {
 		log.Error(err)
