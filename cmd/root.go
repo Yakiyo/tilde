@@ -4,6 +4,8 @@ package cmd
 import (
 	"os"
 
+	"github.com/Yakiyo/tilde/utils"
+	"github.com/Yakiyo/tilde/where"
 	"github.com/charmbracelet/log"
 	cc "github.com/ivanpirog/coloredcobra"
 	"github.com/spf13/cobra"
@@ -47,5 +49,19 @@ func Execute() {
 }
 
 func init() {
-	rootCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
+	f := rootCmd.Flags()
+	// config flags
+	f.String("log-level", "warn", "Set log level [debug, info, warn, error]")
+	f.StringP("dir", "d", where.Dir(), "Set root directory to use for tilde")
+
+	// command-ish flags
+	f.BoolP("list", "l", false, "List all commands in cache")
+	f.BoolP("update", "u", false, "Update local cache")
+	f.Bool("clear-cache", false, "Clear local cache")
+	f.StringP("render", "f", "", "Render a local file")
+
+	// command related flags
+	f.BoolP("raw", "r", false, "Print raw markdown without formatting")
+	f.StringP("language", "L", "en", "Override language")
+	f.StringP("platform", "p", utils.Platform(), "Override operating system")
 }
