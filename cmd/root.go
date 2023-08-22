@@ -35,6 +35,11 @@ func Execute() {
 		NoExtraNewlines: true,
 	})
 
+	if len(os.Args[1:]) < 1 {
+		rootCmd.Help()
+		os.Exit(1)
+	}
+
 	if err := rootCmd.Execute(); err != nil {
 		log.Error(err)
 		os.Exit(1)
