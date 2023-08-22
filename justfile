@@ -1,5 +1,9 @@
+alias b := build
+alias u := update
+alias r := run
+
 default:
-    echo 'Hello, world!'
+    @just --list
 
 update:
     go mod tidy
