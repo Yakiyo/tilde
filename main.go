@@ -3,11 +3,14 @@ package main
 
 import (
 	"github.com/Yakiyo/tilde/cmd"
+	"github.com/Yakiyo/tilde/logger"
 	"github.com/charmbracelet/log"
 )
 
 func main() {
 	defer panicHandler()
+
+	logger.Init()
 
 	cmd.Execute()
 }
