@@ -16,7 +16,7 @@ func init() {
 	v.SetDefault("root_dir", where.Dir())
 	// must be one of always, auto, never
 	v.SetDefault("colors", "auto")
-	// must be one of fancy (use gum), plain (selt formatter), none/raw (raw value)
+	// must be one of fancy (use gum), plain (self-made formatter), none/raw (raw value)
 	v.SetDefault("style", "fancy")
 }
 
