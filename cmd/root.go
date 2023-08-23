@@ -7,6 +7,7 @@ import (
 
 	"github.com/Yakiyo/tilde/cache"
 	"github.com/Yakiyo/tilde/config"
+	"github.com/Yakiyo/tilde/meta"
 	"github.com/Yakiyo/tilde/utils"
 	"github.com/Yakiyo/tilde/where"
 	"github.com/charmbracelet/log"
@@ -22,7 +23,7 @@ var rootCmd = &cobra.Command{
 	Long: `tilde is a fast and frictionless console client for tldr.
 	
 View community driven and simplified man pages in your terminal`,
-	Version: "0.1.0",
+	Version: meta.Version,
 	PreRunE: func(cmd *cobra.Command, args []string) error {
 		config.BindFlags(cmd)
 		return nil
@@ -63,6 +64,11 @@ func Execute() {
 }
 
 func init() {
+	rootCmd.SetVersionTemplate(func() string {
+		return `{{with .Name}}{{printf "%s " .}}{{end}}{{printf "version %s" .Version}}` +
+			fmt.Sprintf("\ntldr spec version %v\n", meta.TldrSpec)
+	}())
+
 	f := rootCmd.Flags()
 	// config flags
 	f.String("log-level", "warn", "Set log level [debug, info, warn, error]")
