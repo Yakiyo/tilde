@@ -26,7 +26,6 @@ func List() {
 		filepath.Join(cache, utils.Platform()),
 		filepath.Join(cache, "common"),
 	}
-	fmt.Println(dirs)
 	for _, dir := range dirs {
 		filepath.WalkDir(dir, func(path string, d fs.DirEntry, err error) error {
 			if !d.IsDir() {
