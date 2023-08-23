@@ -45,7 +45,7 @@ func Index() string {
 	return filepath.Join(Cache(), "index.json")
 }
 
-// path to config.toml file located inside root dir
+// path to default config.toml file located inside root dir
 func Config() string {
 	return filepath.Join(Dir(), "tilde.toml")
 }

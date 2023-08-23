@@ -9,6 +9,7 @@ import (
 func init() {
 	v.SetConfigType("toml")
 	v.SetConfigName("tilde")
+	v.AddConfigPath(where.Dir())
 
 	v.SetDefault("auto_update", true)
 	v.SetDefault("log_level", "warn")
