@@ -45,6 +45,11 @@ func Index() string {
 	return filepath.Join(Cache(), "index.json")
 }
 
+// path to config.toml file located inside root dir
+func Config() string {
+	return filepath.Join(Dir(), "config.toml")
+}
+
 // set root to a path
 func SetRoot(path string) {
 	root = path
