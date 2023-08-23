@@ -18,7 +18,7 @@ import (
 
 // rootCmd represents the base command when called without any subcommands
 var rootCmd = &cobra.Command{
-	Use:     "tilde",
+	Use:     "tldr",
 	Example: "tldr git log",
 	Short:   "Fast tldr console client",
 	Long: `tilde is a fast and frictionless console client for tldr.
@@ -82,7 +82,7 @@ func Execute() {
 
 func init() {
 	rootCmd.SetVersionTemplate(func() string {
-		return `{{with .Name}}{{printf "%s " .}}{{end}}{{printf "version %s" .Version}}` +
+		return `tilde {{printf "version %s" .Version}}` +
 			fmt.Sprintf("\ntldr spec version %v\n", meta.TldrSpec)
 	}())
 
