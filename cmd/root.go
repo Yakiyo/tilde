@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"os"
 
+	"github.com/Yakiyo/tilde/cache"
 	"github.com/Yakiyo/tilde/utils"
 	"github.com/Yakiyo/tilde/where"
 	"github.com/charmbracelet/log"
@@ -31,6 +32,13 @@ View community driven and simplified man pages in your terminal`,
 		if len(os.Args[1:]) < 1 {
 			cmd.Help()
 			os.Exit(1)
+		}
+		if update := utils.Must(cmd.Flags().GetBool("update")); update {
+			err := cache.Download()
+			if err != nil {
+				log.Fatal("Error downloading cache", "error", err)
+			}
+			fmt.Println("Successfully downloaded local cache")
 		}
 	},
 }
