@@ -23,6 +23,8 @@ func init() {
 // bind command line flags to viper
 func BindFlags(cmd *cobra.Command) {
 	lookUp := cmd.Flags().Lookup
-	v.BindPFlag("colors", lookUp("style"))
+	v.BindPFlag("style", lookUp("style"))
 	v.BindPFlag("root_dir", lookUp("dir"))
+	v.BindPFlag("color", lookUp("color"))
+	v.BindPFlag("log_level", lookUp("log-level"))
 }
