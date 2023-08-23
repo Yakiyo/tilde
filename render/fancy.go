@@ -8,10 +8,10 @@ import (
 )
 
 var r, _ = glamour.NewTermRenderer(
-    // detect background color and pick either the default dark or light theme
-    glamour.WithAutoStyle(),
-    // wrap output at specific width (default is 80)
-    glamour.WithWordWrap(40),
+	// detect background color and pick either the default dark or light theme
+	glamour.WithAutoStyle(),
+	// wrap output at specific width (default is 80)
+	glamour.WithWordWrap(40),
 )
 
 // Render markdown with gum

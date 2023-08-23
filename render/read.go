@@ -17,4 +17,4 @@ func ReadFile(path string) string {
 		log.Fatal(err)
 	}
 	return string(b)
-} 
+}
