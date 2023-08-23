@@ -15,7 +15,7 @@ func init() {
 	v.SetDefault("log_level", "warn")
 	v.SetDefault("root_dir", where.Dir())
 	// must be one of always, auto, never
-	v.SetDefault("colors", "auto")
+	v.SetDefault("color", "auto")
 	// must be one of fancy (use glamour), plain (self-made formatter), none/raw (raw value)
 	v.SetDefault("style", "fancy")
 }

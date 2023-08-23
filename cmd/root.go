@@ -8,6 +8,7 @@ import (
 	"github.com/Yakiyo/tilde/cache"
 	"github.com/Yakiyo/tilde/config"
 	"github.com/Yakiyo/tilde/meta"
+	"github.com/Yakiyo/tilde/render"
 	"github.com/Yakiyo/tilde/utils"
 	"github.com/Yakiyo/tilde/where"
 	"github.com/charmbracelet/log"
@@ -52,10 +53,14 @@ View community driven and simplified man pages in your terminal`,
 		}
 
 		if seed := utils.Must(cmd.Flags().GetBool("seed-config")); seed {
-			if err := viper.WriteConfig(); err != nil {
+			if err := viper.SafeWriteConfig(); err != nil {
 				log.Fatal(err)
 			}
 			fmt.Println("Successfully seeded config at", where.Config())
+		}
+
+		if rnd := utils.Must(cmd.Flags().GetString("render")); rnd != "" {
+			render.Render(rnd, viper.GetString("style"))
 		}
 	},
 }
