@@ -28,7 +28,7 @@ func init() {
 	f.StringP("render", "f", "", "Render a local file")
 
 	// command related flags
-	f.StringP("style", "s", "", "Set output style [fancy, plain, raw]")
+	f.BoolP("raw", "r", false, "Print raw markdown or not")
 	f.StringP("language", "L", "", "Override language")
 	f.StringP("platform", "p", utils.Platform(), "Override operating system")
 }

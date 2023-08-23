@@ -54,6 +54,18 @@ View community driven and simplified man pages in your terminal`,
 			fmt.Println("Successfully downloaded local cache")
 		}
 
+		if clear_cache := utils.Must(cmd.Flags().GetBool("clear-cache")); clear_cache {
+			cache := where.Cache()
+			if !utils.FsExists(cache) {
+				fmt.Println("Local cache does not exist. Nothing to remove")
+				return
+			}
+			err := os.RemoveAll(cache)
+			if err != nil {
+				log.Error("Failed to clear cache", "error", err)
+			}
+		}
+
 		if list := utils.Must(cmd.Flags().GetBool("list")); list {
 			cache.List()
 		}
@@ -66,7 +78,8 @@ View community driven and simplified man pages in your terminal`,
 		}
 
 		if rnd := utils.Must(cmd.Flags().GetString("render")); rnd != "" {
-			render.Render(rnd, viper.GetString("style"))
+			render.Render(rnd, utils.Must(cmd.Flags().GetBool("raw")))
+			return
 		}
 	},
 }
