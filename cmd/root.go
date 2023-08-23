@@ -54,6 +54,10 @@ View community driven and simplified man pages in your terminal`,
 			fmt.Println("Successfully downloaded local cache")
 		}
 
+		if list := utils.Must(cmd.Flags().GetBool("list")); list {
+			cache.List()
+		}
+
 		if seed := utils.Must(cmd.Flags().GetBool("seed-config")); seed {
 			if err := viper.SafeWriteConfig(); err != nil {
 				log.Fatal(err)
