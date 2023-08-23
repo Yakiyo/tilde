@@ -47,7 +47,7 @@ func Index() string {
 
 // path to config.toml file located inside root dir
 func Config() string {
-	return filepath.Join(Dir(), "config.toml")
+	return filepath.Join(Dir(), "tilde.toml")
 }
 
 // set root to a path
