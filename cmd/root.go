@@ -9,10 +9,10 @@ import (
 	"github.com/Yakiyo/tilde/config"
 	"github.com/Yakiyo/tilde/meta"
 	"github.com/Yakiyo/tilde/utils"
-	"github.com/Yakiyo/tilde/where"
 	"github.com/charmbracelet/log"
 	cc "github.com/ivanpirog/coloredcobra"
 	"github.com/spf13/cobra"
+	"github.com/spf13/viper"
 )
 
 // rootCmd represents the base command when called without any subcommands
@@ -26,9 +26,11 @@ View community driven and simplified man pages in your terminal`,
 	Version: meta.Version,
 	PreRunE: func(cmd *cobra.Command, args []string) error {
 		config.BindFlags(cmd)
+		config.Read(utils.Must(cmd.Flags().GetString("config")))
 		return nil
 	},
 	Run: func(cmd *cobra.Command, args []string) {
+		fmt.Println(viper.AllSettings())
 		if len(os.Args[1:]) < 1 {
 			cmd.Help()
 			os.Exit(1)
@@ -71,9 +73,9 @@ func init() {
 
 	f := rootCmd.Flags()
 	// config flags
-	f.String("log-level", "warn", "Set log level [debug, info, warn, error]")
-	f.StringP("dir", "d", where.Dir(), "Set root directory to use for tilde")
-	f.StringP("config", "c", where.Config(), "Set path to config file")
+	f.String("log-level", "", "Set log level [debug, info, warn, error]")
+	f.StringP("dir", "d", "", "Set root directory to use for tilde")
+	f.StringP("config", "c", "", "Set path to config file")
 
 	// command-ish flags
 	f.BoolP("list", "l", false, "List all commands in cache")
@@ -82,7 +84,7 @@ func init() {
 	f.StringP("render", "f", "", "Render a local file")
 
 	// command related flags
-	f.StringP("style", "s", "fancy", "Set output style [fancy, plain, raw]")
-	f.StringP("language", "L", "en", "Override language")
+	f.StringP("style", "s", "", "Set output style [fancy, plain, raw]")
+	f.StringP("language", "L", "", "Override language")
 	f.StringP("platform", "p", utils.Platform(), "Override operating system")
 }

@@ -1,12 +1,18 @@
 package config
 
 import (
+	"github.com/Yakiyo/tilde/where"
 	"github.com/charmbracelet/log"
 	"github.com/spf13/viper"
 )
 
 // Read config file and handle error cases
-func Read() {
+func Read(file string) {
+	if file == "" {
+		viper.SetConfigFile(where.Config())
+	} else {
+		viper.SetConfigFile(file)
+	}
 	if err := viper.ReadInConfig(); err != nil {
 		if _, ok := err.(viper.ConfigFileNotFoundError); ok {
 			log.Warn("Missing config file, switching to defaults. Consider using the `--seed-config` flag to generate the default config file")
