@@ -2,6 +2,7 @@
 package cmd
 
 import (
+	"fmt"
 	"os"
 
 	"github.com/Yakiyo/tilde/utils"
@@ -21,8 +22,9 @@ var rootCmd = &cobra.Command{
 View community driven and simplified man pages in your terminal`,
 	Version: "0.1.0",
 	PreRunE: func(cmd *cobra.Command, args []string) error {
-		// logLvl := utils.Must(cmd.Flags().GetString("log-level"))
-		
+		logLvl := utils.Must(cmd.Flags().GetString("log-level"))
+		log.SetLevel(log.ParseLevel(logLvl))
+		log.Info(fmt.Sprintf("Setting log level to %v", logLvl))
 		return nil
 	},
 	Run: func(cmd *cobra.Command, args []string) {
@@ -58,6 +60,7 @@ func init() {
 	// config flags
 	f.String("log-level", "warn", "Set log level [debug, info, warn, error]")
 	f.StringP("dir", "d", where.Dir(), "Set root directory to use for tilde")
+	f.StringP("config", "c", where.Config(), "Set path to config file")
 
 	// command-ish flags
 	f.BoolP("list", "l", false, "List all commands in cache")
