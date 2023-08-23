@@ -2,6 +2,7 @@ set positional-arguments
 
 alias b := build
 alias u := update
+alias r := run
 
 default:
   @just --list
