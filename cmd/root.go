@@ -12,6 +12,7 @@ import (
 	"github.com/Yakiyo/tilde/utils"
 	"github.com/Yakiyo/tilde/where"
 	"github.com/charmbracelet/log"
+	"github.com/fatih/color"
 	cc "github.com/ivanpirog/coloredcobra"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
@@ -36,6 +37,7 @@ View community driven and simplified man pages in your terminal`,
 
 		log.SetLevel(log.ParseLevel(viper.GetString("log_level")))
 		where.SetRoot(viper.GetString("root_dir"))
+		color.NoColor = !utils.ColorOn(viper.GetString("color"))
 		return nil
 	},
 	Args: cobra.MaximumNArgs(2),

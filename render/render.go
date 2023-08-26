@@ -2,6 +2,7 @@ package render
 
 import (
 	"fmt"
+	"strings"
 
 	"github.com/Yakiyo/tilde/utils"
 	"github.com/charmbracelet/log"
@@ -17,5 +18,6 @@ func Render(file string, raw bool) {
 		fmt.Println(out)
 		return
 	}
-
+	lines := format(out)
+	fmt.Println(strings.Join(lines, "\n\n"))
 }
