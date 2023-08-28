@@ -4,7 +4,6 @@ import (
 	"fmt"
 
 	"github.com/Yakiyo/tilde/meta"
-	"github.com/Yakiyo/tilde/utils"
 )
 
 func init() {
@@ -29,6 +28,6 @@ func init() {
 
 	// command related flags
 	f.BoolP("raw", "r", false, "Print raw markdown or not")
-	f.StringP("language", "L", "", "Override language")
-	f.StringP("platform", "p", utils.Platform(), "Override operating system")
+	f.StringP("language", "L", "", "Override language (Defaults to \"en\")")
+	f.StringP("platform", "p", "", "Override operating system (Defaults to user platform)")
 }
