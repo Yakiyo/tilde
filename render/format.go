@@ -37,6 +37,9 @@ func format(md string) []string {
 	return res
 }
 
+// FIXME: this needs work. Run `~/.tilde/cache/pages/common/git.md` to see the mistakes
+// in the printing format
+
 // parse an `example`, remove `{{`, `}}` and underline the variable
 func highLightVariable(line string) string {
 	return variableRegex.ReplaceAllString(line, underline("$1"))
