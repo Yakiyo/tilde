@@ -73,6 +73,7 @@ View community driven and simplified man pages in your terminal`,
 
 		if list := utils.Must(cmd.Flags().GetBool("list")); list {
 			cache.List()
+			return
 		}
 
 		if seed := utils.Must(cmd.Flags().GetBool("seed-config")); seed {
