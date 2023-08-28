@@ -4,6 +4,7 @@ package cmd
 import (
 	"fmt"
 	"os"
+	"path/filepath"
 
 	"github.com/Yakiyo/tilde/cache"
 	"github.com/Yakiyo/tilde/config"
@@ -73,6 +74,10 @@ View community driven and simplified man pages in your terminal`,
 		}
 
 		if seed := utils.Must(cmd.Flags().GetBool("seed-config")); seed {
+			dir := filepath.Dir(where.Config())
+			if !utils.FsExists(dir) {
+				os.MkdirAll(dir, os.ModePerm)
+			}
 			if err := viper.SafeWriteConfig(); err != nil {
 				log.Fatal(err)
 			}
