@@ -1,14 +1,13 @@
 package render
 
 import (
-	"regexp"
 	"strings"
 
 	"github.com/charmbracelet/log"
 	"github.com/fatih/color"
+	"github.com/samber/lo"
 )
 
-var variableRegex = regexp.MustCompile(`\{\{(.*)\}\}`)
 var underline = color.New(color.Underline).Sprint
 
 // format markdown
@@ -29,8 +28,10 @@ func format(md string) []string {
 			res = append(res, color.HiGreenString(line[1:]))
 		} else if strings.HasPrefix(line, "`") {
 			// example
-			line = highLightVariable(line[1 : len(line)-1])
-			res = append(res, "      "+color.CyanString(line))
+			line = line[1 : len(line)-1]
+			line = highLightVariable(line)
+			line = color.CyanString(line)
+			res = append(res, "      "+line)
 		}
 	}
 	res = append(res, "")
@@ -42,5 +43,16 @@ func format(md string) []string {
 
 // parse an `example`, remove `{{`, `}}` and underline the variable
 func highLightVariable(line string) string {
-	return variableRegex.ReplaceAllString(line, underline("$1"))
+	lines := strings.Split(line, "}}")
+	lines = lo.Map(lines, func(line string, _ int) string {
+		l := strings.Split(line, "{{")
+		if len(l) > 1 {
+			l[1] = underline(l[1])
+		}
+		return strings.Join(l, "{{")
+	})
+	line = strings.Join(lines, "}}")
+	line = strings.ReplaceAll(line, "{{", "")
+	line = strings.ReplaceAll(line, "}}", "")
+	return line
 }
