@@ -3,6 +3,8 @@ package utils
 import (
 	"runtime"
 	"strings"
+
+	"github.com/samber/lo"
 )
 
 // Get current platform name. Return common if unknown (shouldnt generally occur)
@@ -22,16 +24,16 @@ func Platform() string {
 var VALID_PLATFORMS = []string{"windows", "linux", "osx", "android", "sunos"}
 
 // check if a platform is valid or not
-func ValidPlatform(plat string) bool {
+func IsValidPlatform(plat string) bool {
+	return lo.Contains(VALID_PLATFORMS, plat)
+}
+
+// convert plat to app friendly type
+func SafePlatform(plat string) string {
 	plat = strings.ToLower(plat)
 	switch plat {
 	case "darwin", "macos":
 		plat = "osx"
 	}
-	for _, x := range VALID_PLATFORMS {
-		if plat == x {
-			return true
-		}
-	}
-	return false
+	return plat
 }
