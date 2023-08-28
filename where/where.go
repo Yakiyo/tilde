@@ -52,5 +52,9 @@ func Config() string {
 
 // set root to a path
 func SetRoot(path string) {
-	root = path
+	f, err := homedir.Expand(path)
+	if err != nil {
+		log.Fatal("Unexpected error when expanding root path", "err", err)
+	}
+	root = f
 }
