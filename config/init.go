@@ -12,11 +12,12 @@ func init() {
 	v.SetConfigName("tilde")
 	v.AddConfigPath(where.Dir())
 
-	v.SetDefault("auto_update", true)
+	// v.SetDefault("auto_update", true)
 	v.SetDefault("log_level", "warn")
 	v.SetDefault("root_dir", where.Dir())
 	v.SetDefault("platform", utils.Platform())
 	v.SetDefault("language", "en")
+	v.SetDefault("custom_pages", "")
 	// must be one of always, auto, never
 	v.SetDefault("color", "auto")
 }
