@@ -69,6 +69,7 @@ View community driven and simplified man pages in your terminal`,
 			if err != nil {
 				log.Error("Failed to clear cache", "error", err)
 			}
+			return
 		}
 
 		if list := utils.Must(cmd.Flags().GetBool("list")); list {
@@ -81,10 +82,11 @@ View community driven and simplified man pages in your terminal`,
 			if !utils.FsExists(dir) {
 				os.MkdirAll(dir, os.ModePerm)
 			}
-			if err := viper.SafeWriteConfig(); err != nil {
+			if err := viper.WriteConfig(); err != nil {
 				log.Fatal(err)
 			}
 			fmt.Println("Successfully seeded config at", where.Config())
+			return
 		}
 
 		raw := utils.Must(cmd.Flags().GetBool("raw"))
