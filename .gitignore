@@ -22,3 +22,5 @@ go.work
 
 # Builds
 tldr*
+
+dist/
