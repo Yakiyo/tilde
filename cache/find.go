@@ -9,45 +9,24 @@ import (
 	"github.com/Yakiyo/tilde/utils"
 	"github.com/Yakiyo/tilde/where"
 	"github.com/charmbracelet/log"
+	"github.com/mitchellh/go-homedir"
 	"github.com/samber/lo"
 	"github.com/spf13/viper"
 )
 
-// // find a command
-// func Find(command string) Command {
-// 	platform := viper.GetString("platform")
-// 	language := viper.GetString("language")
-// 	c, err := ReadIndex()
-// 	if err != "" {
-// 		log.Error(err)
-// 		os.Exit(1)
-// 	}
-// 	// t := Target{
-// 	// 	Os:       platform,
-// 	// 	Language: language,
-// 	// }
-// 	f, b := lo.Find[Command](c.Commands, func(i Command) bool {
-// 		return i.Name == command
-// 	})
-// 	if !b {
-// 		fmt.Fprintf(
-// 			os.Stderr,
-// 			"Page `%v` not found in cache\nUpdate the cache with `tldr -u` or submit a pr via the following link:\n%v%v",
-// 			command,
-// 			`https://github.com/tldr-pages/tldr/issues/new?title=page%20request:%20`,
-// 			command,
-// 		)
-// 	}
-// 	if !lo.ContainsBy(f.Targets, func(t Target) bool { return t.Os == platform }) {
-// 		log.Infof("Page %v not found for platform %v", command, platform)
-// 	}
-// 	// if platform was not the user platform, we try it first, else we skip too common
-// 	if platform != utils.Platform() {}
-
-// 	return f
-// }
-
 func Find(command string) string {
+	// check if there is any custom dir specified by user, and if it contains any file
+	// with that command name
+	if custom := viper.GetString("custom_dir"); custom != "" {
+		custom, err := homedir.Expand(custom)
+		if err != nil {
+			log.Fatal("Unable to expand custom directory value", "value", custom, "err", err)
+		}
+		file := filepath.Join(custom, command+".md")
+		if utils.FsExists(file) {
+			return file
+		}
+	}
 	language := viper.GetString("language")
 	platform := utils.SafePlatform(viper.GetString("platform"))
 	if !utils.IsValidPlatform(platform) {
@@ -58,7 +37,6 @@ func Find(command string) string {
 	if language != "en" {
 		lang_dir += "." + language
 	}
-	// TODO: check for custom pages dir here
 
 	// create a sorted slice of platforms, based on priority
 	// first comes user provided platform, then the default system platform
