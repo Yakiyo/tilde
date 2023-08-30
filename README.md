@@ -11,6 +11,11 @@ This was inspired by the amazing [tealdeer](https://github.com/dbrgn/tealdeer). 
 
 Download binaries from the [release](https://github.com/Yakiyo/tilde/releases/latest) section
 
+### Scoop
+```shell
+ $ scoop install https://github.com/Yakiyo/tilde/raw/main/pkg/scoop/tilde.json
+```
+*More methods TBA*
 ## Usage
 Tilde follows the [tldr client specifications](https://github.com/tldr-pages/tldr/blob/main/CLIENT-SPECIFICATION.md). The version of the spec followed can be viewed by running the `tldr --version` flag. 
 
