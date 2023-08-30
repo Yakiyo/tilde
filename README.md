@@ -1,6 +1,7 @@
 # tilde
 [![ci](https://github.com/Yakiyo/tilde/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/Yakiyo/tilde/actions/workflows/ci.yml) ![GitHub go.mod Go version (subdirectory of monorepo)](https://img.shields.io/github/go-mod/go-version/Yakiyo/tilde) ![GitHub tag (with filter)](https://img.shields.io/github/v/tag/Yakiyo/tilde?label=version)
 
+![image](https://github.com/Yakiyo/tilde/assets/91675932/963644cc-2152-401e-b05b-bfe6d4485e6e)
 
 An easy to use and fast console client for [tldr](https://github.com/tldr-pages/tldr)
 
