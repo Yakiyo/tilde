@@ -4,7 +4,7 @@ before:
     - go mod tidy
 builds:
   - binary: "tldr"
-  - env:
+    env:
       - CGO_ENABLED=0
     goos:
       - linux
