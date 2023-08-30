@@ -4,11 +4,13 @@ import (
 	"strings"
 
 	"github.com/charmbracelet/log"
-	"github.com/fatih/color"
+	"github.com/gookit/color"
 	"github.com/samber/lo"
 )
 
-var underline = color.New(color.Underline).Sprint
+var desc = color.FgGreen.Render
+var example = color.FgBlue.Render
+var varc = color.FgLightCyan.Render
 
 // format markdown
 func format(md string) []string {
@@ -25,12 +27,12 @@ func format(md string) []string {
 			res[0] += line[1:] + "\n"
 		} else if strings.HasPrefix(line, "-") {
 			// example description
-			res = append(res, color.HiGreenString(line[1:]))
+			res = append(res, desc(line[1:]))
 		} else if strings.HasPrefix(line, "`") {
 			// example
 			line = line[1 : len(line)-1]
+			line = example(line)
 			line = highLightVariable(line)
-			line = color.CyanString(line)
 			res = append(res, "      "+line)
 		}
 	}
@@ -47,7 +49,9 @@ func highLightVariable(line string) string {
 	lines = lo.Map(lines, func(line string, _ int) string {
 		l := strings.Split(line, "{{")
 		if len(l) > 1 {
-			l[1] = underline(l[1])
+			l[1] = varc(l[1])
+		} else {
+			l[0] = example(l[0])
 		}
 		return strings.Join(l, "{{")
 	})
