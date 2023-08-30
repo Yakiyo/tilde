@@ -1,0 +1,28 @@
+{
+    "version": "1.0.0",
+    "architecture": {
+        "32bit": {
+            "url": "https://github.com/Yakiyo/tilde/releases/download/v1.0.0/tilde_Windows_i386.zip",
+            "bin": [
+                "tldr.exe"
+            ],
+            "hash": "236d70765aa719e88b1cab9dce36aea88f561f17fc758282131352d111ba6d6e"
+        },
+        "64bit": {
+            "url": "https://github.com/Yakiyo/tilde/releases/download/v1.0.0/tilde_Windows_x86_64.zip",
+            "bin": [
+                "tldr.exe"
+            ],
+            "hash": "6a758b012e3a8ad14299ae4d637626acb0dfb90048ada877f15bb6a014bdefaa"
+        },
+        "arm64": {
+            "url": "https://github.com/Yakiyo/tilde/releases/download/v1.0.0/tilde_Windows_arm64.zip",
+            "bin": [
+                "tldr.exe"
+            ],
+            "hash": "715d34389ed26ef99146fe27df05c5af6a74d303e9b97faa078b6f3d096e9036"
+        }
+    },
+    "homepage": "https://github.com/Yakiyo/tilde",
+    "description": "Fast easy-to-use console client for tldr"
+}
