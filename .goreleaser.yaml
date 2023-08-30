@@ -3,6 +3,7 @@ before:
   hooks:
     - go mod tidy
 builds:
+  - binary: "tldr"
   - env:
       - CGO_ENABLED=0
     goos:
@@ -36,15 +37,14 @@ changelog:
       - '^test:'
 
 scoops:
-  - folder: pkg/scoop
+  - folder: "pkg/scoop"
     commit_author:
-        name: goreleaserbot
-        email: bot@goreleaser.com
+      name: goreleaserbot
+      email: bot@goreleaser.com
     commit_msg_template: "Update scoop manifest to {{ .ProjectName }} version {{ .Tag }}"
-    homepage: "https://github.com/Yakiyo/scoob"
-    description: "Drop-in replacement cli for scoop"
-    depends: ["git"]
+    homepage: "https://github.com/Yakiyo/tilde"
+    description: "Fast easy-to-use console client for tldr"
     repository:
       owner: "Yakiyo"
-      name: "scoob"
+      name: "tilde"
       branch: "main"
