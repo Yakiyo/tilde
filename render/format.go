@@ -4,13 +4,13 @@ import (
 	"strings"
 
 	"github.com/charmbracelet/log"
-	"github.com/gookit/color"
+	"github.com/fatih/color"
 	"github.com/samber/lo"
 )
 
-var desc = color.FgGreen.Render
-var example = color.FgBlue.Render
-var varc = color.FgLightCyan.Render
+var desc = color.GreenString
+var example = color.BlueString
+var varc = color.CyanString
 
 // format markdown
 func format(md string) []string {
