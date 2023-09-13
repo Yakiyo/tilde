@@ -3,17 +3,19 @@ package render
 import (
 	"strings"
 
+	"github.com/Yakiyo/tilde/utils"
 	"github.com/charmbracelet/log"
-	"github.com/fatih/color"
-	"github.com/samber/lo"
+	"github.com/spf13/viper"
 )
 
-var desc = color.GreenString
-var example = color.BlueString
-var varc = color.CyanString
+var reset = "\x1b[0m"
+var green = "\x1b[32m"
+var cyan = "\x1b[36m"
+var cyanUnd = "\x1b[36;4m"
 
 // format markdown
 func format(md string) []string {
+	setColor()
 	lines := strings.Split(md, "\n")
 	res := []string{}
 	res = append(res, "\n")
@@ -32,7 +34,6 @@ func format(md string) []string {
 			// example
 			line = line[1 : len(line)-1]
 			line = example(line)
-			line = highLightVariable(line)
 			res = append(res, "      "+line)
 		}
 	}
@@ -40,23 +41,22 @@ func format(md string) []string {
 	return res
 }
 
-// FIXME: this needs work. Run `~/.tilde/cache/pages/common/git.md` to see the mistakes
-// in the printing format
+func setColor() {
+	level := viper.GetString("color")
+	if !utils.ColorOn(level) {
+		log.Info("Switching off colors")
+		reset = ""
+		cyan = ""
+		cyanUnd = ""
+		green = ""
+	}
+}
 
-// parse an `example`, remove `{{`, `}}` and underline the variable
-func highLightVariable(line string) string {
-	lines := strings.Split(line, "}}")
-	lines = lo.Map(lines, func(line string, _ int) string {
-		l := strings.Split(line, "{{")
-		if len(l) > 1 {
-			l[1] = varc(l[1])
-		} else {
-			l[0] = example(l[0])
-		}
-		return strings.Join(l, "{{")
-	})
-	line = strings.Join(lines, "}}")
-	line = strings.ReplaceAll(line, "{{", "")
-	line = strings.ReplaceAll(line, "}}", "")
+func desc(s string) string { return green + s + reset }
+
+func example(line string) string {
+	line = cyan + line + reset
+	line = strings.ReplaceAll(line, "{{", reset+cyanUnd)
+	line = strings.ReplaceAll(line, "}}", reset+cyan)
 	return line
 }
