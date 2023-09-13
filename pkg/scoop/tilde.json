@@ -1,26 +1,26 @@
 {
-    "version": "1.0.1",
+    "version": "1.0.2",
     "architecture": {
         "32bit": {
-            "url": "https://github.com/Yakiyo/tilde/releases/download/v1.0.1/tilde_Windows_i386.zip",
+            "url": "https://github.com/Yakiyo/tilde/releases/download/v1.0.2/tilde_Windows_i386.zip",
             "bin": [
                 "tldr.exe"
             ],
-            "hash": "e449de3a62871689bd1ac9aad3b44fbd1b8f6518605a74a983746f0e6c0066df"
+            "hash": "0bdb5c4776ba86ba20fea902234f7832d0e2e91b6771dca39adf7de14fe9417f"
         },
         "64bit": {
-            "url": "https://github.com/Yakiyo/tilde/releases/download/v1.0.1/tilde_Windows_x86_64.zip",
+            "url": "https://github.com/Yakiyo/tilde/releases/download/v1.0.2/tilde_Windows_x86_64.zip",
             "bin": [
                 "tldr.exe"
             ],
-            "hash": "d45fbaff60aee4206430792aae738b762c87e1015696d816954440d4b23c7f91"
+            "hash": "2a2c6c2571784465564d50fabf16364ffedd80dfd6595431e0e39cf87c3d6bda"
         },
         "arm64": {
-            "url": "https://github.com/Yakiyo/tilde/releases/download/v1.0.1/tilde_Windows_arm64.zip",
+            "url": "https://github.com/Yakiyo/tilde/releases/download/v1.0.2/tilde_Windows_arm64.zip",
             "bin": [
                 "tldr.exe"
             ],
-            "hash": "1de728771eec5efc8b7878a1392e80f5c4926a82a5e0dfe51d1e4e0cd700718d"
+            "hash": "e53aaade8c2e80384c061254ddd3208d394619c66df04b512bcaba5248fe32cb"
         }
     },
     "homepage": "https://github.com/Yakiyo/tilde",
